@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap');
+
+/* resources/css/app.css */
+.font-senior {
+    font-size: 1.25rem; /* Aumenta el tamaño de la letra */
+    line-height: 1.5; /* Ajusta el line-height para mejor legibilidad */
+}
+
+.bg-young {
+    background-color: #FFCCCB; /* Color de fondo para estilo infantil */
+    color: #FF69B4; /* Color de texto para estilo infantil */
+}
+
+.bg-adult {
+    background-color: #A9A9A9; /* Color de fondo para adultos */
+    color: #2C3E50; /* Color de texto para adultos */
+}
+
+.bg-senior {
+    background-color: #D3D3D3; /* Color de fondo para adultos mayores */
+    color: #000000; /* Color de texto para adultos mayores */
+}
