@@ -258,7 +258,6 @@ classDiagram
         +string imagen
         +string public_id
         +timestamps
-        
         +hasActivePromotion() bool
         +getDiscountedPrice() decimal
         +bookings() HasMany
@@ -271,7 +270,6 @@ classDiagram
         +int evento_id
         +decimal costo_entrada
         +timestamps
-        
         +user() BelongsTo
         +event() BelongsTo
     }
@@ -284,7 +282,6 @@ classDiagram
         +date fecha_inicio
         +date fecha_fin
         +timestamps
-        
         +isActive() bool
         +event() BelongsTo
     }
@@ -297,14 +294,14 @@ classDiagram
         +string role
         +string style
         +timestamps
-        
         +bookings() HasMany
         +isAdmin() bool
     }
     
-    Event ||--o{ Booking : has
-    Event ||--o{ Promotion : has
-    User ||--o{ Booking : makes
+    %% Relaciones permitidas
+    Event o-- Booking : "has"
+    Event o-- Promotion : "has"
+    User o-- Booking : "makes"
 ```
 
 ### **Módulo de Patrocinadores**
@@ -317,10 +314,9 @@ classDiagram
         +string email
         +string telefono
         +timestamps
-        
         +sponsorships() HasMany
     }
-    
+
     class Sponsorship {
         +int id
         +int patrocinador_id
@@ -328,13 +324,13 @@ classDiagram
         +decimal monto
         +string tipo
         +timestamps
-        
         +sponsor() BelongsTo
         +event() BelongsTo
     }
-    
-    Sponsor ||--o{ Sponsorship : creates
-    Event ||--o{ Sponsorship : receives
+
+    %% Relaciones corregidas
+    Sponsor o-- Sponsorship : creates
+    Event o-- Sponsorship : receives
 ```
 
 ## 🌊 Flujo de Datos
