@@ -84,16 +84,16 @@ La tabla de eventos muestra:
 ### **Proceso de Creación**
 ```mermaid
 flowchart TD
-    A[Clic en "Crear Evento"] --> B[Formulario de Creación]
-    B --> C[Llenar Información Básica]
-    C --> D[Subir Imagen]
-    D --> E[Configurar Detalles]
-    E --> F[Validación]
-    F -->|Válido| G[Guardar en BD]
-    F -->|Inválido| H[Mostrar Errores]
+    A["Clic en \"Crear Evento\""] --> B["Formulario de Creación"]
+    B --> C["Llenar Información Básica"]
+    C --> D["Subir Imagen"]
+    D --> E["Configurar Detalles"]
+    E --> F["Validación"]
+    F -->|Válido| G["Guardar en BD"]
+    F -->|Inválido| H["Mostrar Errores"]
     H --> C
-    G --> I[Subir Imagen a Cloudinary]
-    I --> J[Evento Creado]
+    G --> I["Subir Imagen a Cloudinary"]
+    I --> J["Evento Creado"]
 ```
 
 ### **Campos Obligatorios**
