@@ -85,6 +85,22 @@ vercel domains add tu-dominio.com
 2. **Error de permisos**: Vercel maneja automáticamente los permisos
 3. **Error de base de datos**: Verifica las credenciales en Environment Variables
 4. **Error 404**: Verifica que las rutas estén correctamente configuradas
+5. **Error libssl.so.10**: Se solucionó actualizando a `vercel-php@0.7.2` y Node.js 18
+
+### Error específico: libssl.so.10
+Si encuentras el error:
+```
+php: error while loading shared libraries: libssl.so.10: cannot open shared object file: No such file or directory
+```
+
+**Solución aplicada:**
+- Actualizado runtime a `vercel-php@0.7.2` (desde 0.6.0)
+- Creado archivo `.node-version` especificando Node.js 18
+- Añadido `buildCommand` optimizado en vercel.json
+
+**Referencias:**
+- [GitHub Issue #560](https://github.com/vercel-community/php/issues/560) - Problema resuelto en v0.7.2
+- [GitHub Discussion #11347](https://github.com/vercel/vercel/discussions/11347) - Solución con Node.js 18
 
 ## Actualizar el despliegue
 
