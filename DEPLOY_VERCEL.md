@@ -46,13 +46,16 @@ vercel --prod
 
 ## Configuración de Base de Datos
 
-Para el despliegue en producción, necesitarás una base de datos PostgreSQL en la nube. Opciones recomendadas:
+Para el despliegue en producción, necesitarás una base de datos MySQL en la nube. **PostgreSQL no es compatible con el runtime estándar de Vercel.**
 
-1. **Aiven** (PostgreSQL - 5GB gratuito)
-2. **Neon** (PostgreSQL - 3GB gratuito) 
-3. **Supabase** (PostgreSQL - con interfaz web)
-4. **Railway** (PostgreSQL/MySQL)
-5. **PlanetScale** (MySQL compatible)
+**Opciones recomendadas (MySQL):**
+
+1. **PlanetScale** (MySQL - 5GB gratuito) ⭐ **MÁS RECOMENDADO**
+2. **Aiven** (MySQL - 5GB gratuito)  
+3. **Railway** (MySQL)
+4. **AWS RDS** (MySQL)
+
+**⚠️ Importante:** El runtime `vercel-php` no incluye la extensión `pdo_pgsql`, por lo que PostgreSQL no funciona directamente.
 
 ## Variables de entorno ya configuradas en vercel.json
 
