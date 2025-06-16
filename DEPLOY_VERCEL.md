@@ -102,6 +102,23 @@ php: error while loading shared libraries: libssl.so.10: cannot open shared obje
 - [GitHub Issue #560](https://github.com/vercel-community/php/issues/560) - Problema resuelto en v0.7.2
 - [GitHub Discussion #11347](https://github.com/vercel/vercel/discussions/11347) - Solución con Node.js 18
 
+### Error: composer: command not found
+Si encuentras el error:
+```
+sh: line 1: composer: command not found
+Error: Command "composer install --no-dev --optimize-autoloader" exited with 127
+```
+
+**Solución:**
+- **No usar `buildCommand` manual** - El runtime `vercel-php@0.7.2` maneja automáticamente Composer
+- Según [Caleb Porzio](https://calebporzio.com/easy-free-serverless-laravel-with-vercel), el runtime hace "all the hard work for us like installing the proper dependencies and running `composer install`"
+- Removido `buildCommand` del vercel.json para dejar que Vercel maneje la instalación automáticamente
+
+### Conflicto con rutas API
+Si tu proyecto Laravel usa rutas `/api/*`, añadidas rutas adicionales en vercel.json para evitar conflictos:
+- `/build/*` → archivos de assets compilados
+- `/storage/*` → archivos de storage público
+
 ## Actualizar el despliegue
 
 Cada `git push` a la rama principal activará automáticamente un nuevo despliegue si conectas tu repositorio de GitHub con Vercel. 
