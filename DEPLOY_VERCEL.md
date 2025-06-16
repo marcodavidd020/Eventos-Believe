@@ -23,10 +23,16 @@ vercel login
 
 Ve al dashboard de Vercel → Tu proyecto → Settings → Environment Variables y agrega:
 
-- `DB_HOST` - Host de tu base de datos
-- `DB_DATABASE` - Nombre de la base de datos
-- `DB_USERNAME` - Usuario de la base de datos
-- `DB_PASSWORD` - Contraseña de la base de datos
+**Para PostgreSQL:**
+- `DB_HOST` = `[TU_HOST_POSTGRESQL]`
+- `DB_PORT` = `[TU_PUERTO]` (normalmente 5432)
+- `DB_DATABASE` = `[TU_BASE_DE_DATOS]`
+- `DB_USERNAME` = `[TU_USUARIO]`
+- `DB_PASSWORD` = `[TU_CONTRASEÑA]`
+
+**Variables adicionales:**
+- `APP_KEY` = `[TU_APP_KEY_GENERADA]` (usar `php artisan key:generate --show`)
+- `APP_URL` = `https://tu-proyecto.vercel.app`
 
 ### 4. Desplegar
 ```bash
@@ -40,12 +46,13 @@ vercel --prod
 
 ## Configuración de Base de Datos
 
-Para el despliegue en producción, necesitarás una base de datos MySQL en la nube. Opciones recomendadas:
+Para el despliegue en producción, necesitarás una base de datos PostgreSQL en la nube. Opciones recomendadas:
 
-1. **PlanetScale** (MySQL gratuito)
-2. **AWS RDS** 
-3. **Digital Ocean Managed Databases**
+1. **Aiven** (PostgreSQL - 5GB gratuito)
+2. **Neon** (PostgreSQL - 3GB gratuito) 
+3. **Supabase** (PostgreSQL - con interfaz web)
 4. **Railway** (PostgreSQL/MySQL)
+5. **PlanetScale** (MySQL compatible)
 
 ## Variables de entorno ya configuradas en vercel.json
 
@@ -123,10 +130,16 @@ Si tu proyecto Laravel usa rutas `/api/*`, añadidas rutas adicionales en vercel
 Para solucionar errores 500 en producción:
 
 1. **TrustProxies configurado**: Añadido `$middleware->trustProxies(at: '*')` en `bootstrap/app.php`
-2. **Base de datos simplificada**: Cambiado a SQLite en memoria temporalmente
-3. **Debug habilitado**: Para ver errores completos (cambiar a false en producción)
-4. **URL actualizada**: Configurada URL correcta de Vercel
-5. **Ruta de prueba**: Añadida `/test` para verificar funcionamiento básico
+2. **Base de datos PostgreSQL**: Configurado para usar PostgreSQL externo
+3. **Error handling**: Añadido try-catch en ruta principal para manejar errores de DB
+4. **Debug habilitado**: Para ver errores completos (cambiar a false en producción)
+5. **URL actualizada**: Configurada URL correcta de Vercel
+6. **Ruta de prueba**: Añadida `/test` para verificar funcionamiento básico
+
+**Configuración de PostgreSQL:**
+- Proveedor recomendado: Aiven, Neon, o Supabase
+- Credenciales configuradas en Environment Variables de Vercel
+- No se incluyen credenciales en el código por seguridad
 
 **Para probar:**
 - Visita: `https://eventos-believe.vercel.app/test`

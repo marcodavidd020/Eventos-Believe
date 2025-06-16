@@ -24,7 +24,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://eventos-believe.vercel.app",
-        "APP_KEY": "base64:PUkpDNz2eWBXUJfuCW/mjvF64x5U6+zPTPmek1Y3vgk=",
+
         
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -38,8 +38,7 @@
         "SESSION_DRIVER": "cookie",
         "SESSION_LIFETIME": "120",
         
-        "DB_CONNECTION": "sqlite",
-        "DB_DATABASE": ":memory:",
+        "DB_CONNECTION": "pgsql",
         
         "FILESYSTEM_DISK": "public",
         "QUEUE_CONNECTION": "sync"

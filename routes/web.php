@@ -32,21 +32,31 @@ Route::get('/', function () {
     $hour = date('H');
     $theme = ($hour >= 18 || $hour < 6) ? 'dark' : 'light';
     
-    // Obtener eventos con sus promociones activas
-    $events = App\Models\Event::with(['promotion' => function($query) {
-        $query->where('fecha_inicio', '<=', now())
-              ->where('fecha_fin', '>=', now());
-    }])
-    ->whereIn('estado', ['Activo', 'Programado'])
-    ->orderBy('fecha', 'asc')
-    ->limit(6)
-    ->get();
-    
-    // Contar eventos y promociones para las estadísticas
-    $eventsCount = App\Models\Event::count();
-    $activePromotions = App\Models\Promotion::where('fecha_inicio', '<=', now())
-                                          ->where('fecha_fin', '>=', now())
-                                          ->count();
+    try {
+        // Obtener eventos con sus promociones activas
+        $events = App\Models\Event::with(['promotion' => function($query) {
+            $query->where('fecha_inicio', '<=', now())
+                  ->where('fecha_fin', '>=', now());
+        }])
+        ->whereIn('estado', ['Activo', 'Programado'])
+        ->orderBy('fecha', 'asc')
+        ->limit(6)
+        ->get();
+        
+        // Contar eventos y promociones para las estadísticas
+        $eventsCount = App\Models\Event::count();
+        $activePromotions = App\Models\Promotion::where('fecha_inicio', '<=', now())
+                                              ->where('fecha_fin', '>=', now())
+                                              ->count();
+    } catch (\Exception $e) {
+        // Si hay error de base de datos, usar datos por defecto
+        $events = collect([]);
+        $eventsCount = 0;
+        $activePromotions = 0;
+        
+        // Log del error para debugging
+        \Log::error('Database error in welcome route: ' . $e->getMessage());
+    }
     
     return view('welcome', compact('theme', 'events', 'eventsCount', 'activePromotions'));
 });
