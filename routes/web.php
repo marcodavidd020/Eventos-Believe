@@ -2,6 +2,17 @@
 
 // routes/web.php
 
+// Ruta de prueba para Vercel
+Route::get('/test', function () {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Laravel is working on Vercel!',
+        'php_version' => PHP_VERSION,
+        'laravel_version' => app()->version(),
+        'timestamp' => now()
+    ]);
+});
+
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;

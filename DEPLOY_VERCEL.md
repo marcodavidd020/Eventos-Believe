@@ -119,6 +119,19 @@ Si tu proyecto Laravel usa rutas `/api/*`, añadidas rutas adicionales en vercel
 - `/build/*` → archivos de assets compilados
 - `/storage/*` → archivos de storage público
 
+### Error 500 - Configuraciones aplicadas
+Para solucionar errores 500 en producción:
+
+1. **TrustProxies configurado**: Añadido `$middleware->trustProxies(at: '*')` en `bootstrap/app.php`
+2. **Base de datos simplificada**: Cambiado a SQLite en memoria temporalmente
+3. **Debug habilitado**: Para ver errores completos (cambiar a false en producción)
+4. **URL actualizada**: Configurada URL correcta de Vercel
+5. **Ruta de prueba**: Añadida `/test` para verificar funcionamiento básico
+
+**Para probar:**
+- Visita: `https://eventos-believe.vercel.app/test`
+- Debería mostrar JSON con información del sistema
+
 ## Actualizar el despliegue
 
 Cada `git push` a la rama principal activará automáticamente un nuevo despliegue si conectas tu repositorio de GitHub con Vercel. 

@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Configuración para Vercel
+        $middleware->trustProxies(at: '*');
+        
         $middleware->alias([
             'checkrole' => CheckRole::class,
         ]);
